@@ -10,7 +10,7 @@ const h5 = document.querySelector("h5")
 let IsLoggedIn = localStorage.getItem("IsLoggedIn")
 
 if (IsLoggedIn) {
-    window.location.href = "http://127.0.0.1:5501/index.html"
+    window.location.href = "index.html"
 }
 
 submitBtn.addEventListener("click", (e) => {
@@ -23,7 +23,7 @@ submitBtn.addEventListener("click", (e) => {
 
         console.log("user logged In")
         localStorage.setItem("IsLoggedIn", true)
-        window.location.href = "http://127.0.0.1:5501/index.html"
+        window.location.href = "./index.html"
         localStorage.setItem("email", emailInput.value)
         localStorage.setItem("password", passwordInput.value)
         localStorage.setItem("number", numberInput.value)

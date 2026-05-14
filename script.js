@@ -2,7 +2,7 @@ let IsLoggedIn = localStorage.getItem("IsLoggedIn")
 
 
 if (!IsLoggedIn) {
-    window.location.href = "http://127.0.0.1:5501/form.html"
+    window.location.href = "./form.html"
 }
 
 
@@ -10,7 +10,7 @@ const logoutForm = document.querySelector("#logoutform")
 
 logoutForm.addEventListener("click", (e) => {
     localStorage.removeItem("IsLoggedIn")
-    window.location.href = "http://127.0.0.1:5501/form.html"
+    window.location.href = "./form.html"
 })
 
 // see All
