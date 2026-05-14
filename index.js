@@ -10,7 +10,7 @@ let email = localStorage.getItem("email")
 let password = localStorage.getItem("password")
 
 
-if (IsLoggedIn === "true") {
+if (IsLoggedIn) {
     window.location.href = "./index.html"
 }
 
