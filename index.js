@@ -1,0 +1,42 @@
+const emailInput = document.querySelector("#email")
+const passwordInput = document.querySelector("#password")
+const submitBtn = document.querySelector("#submit-btn")
+const h5 = document.querySelector("h5")
+
+
+
+let IsLoggedIn = localStorage.getItem("IsLoggedIn")
+let email = localStorage.getItem("email", emailInput.value)
+let password = localStorage.getItem("password", passwordInput.value)
+
+
+if (IsLoggedIn) {
+    window.location.href = "http://127.0.0.1:5501/index.html"
+}
+
+submitBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+    const emailVerified = emailInput.value === email
+    const passwordVerified = passwordInput.value === password
+
+
+
+    if (emailVerified && passwordVerified) {
+        localStorage.setItem("IsLoggedIn", true)
+        window.location.href = "http://127.0.0.1:5501/index.html"
+    }
+
+    else if (!passwordVerified && emailVerified) {
+        h5.style.display = "block"
+        h5.textContent = "password is Incorrect"
+    }
+    else if (!emailVerified && passwordVerified) {
+        h5.style.display = "block"
+        h5.textContent = "Email is Incorrect"
+    } else {
+        h5.style.display = "block"
+        h5.textContent = "user not Found"
+    }
+})
+
+
