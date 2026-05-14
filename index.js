@@ -11,7 +11,7 @@ let password = localStorage.getItem("password")
 
 
 if (IsLoggedIn) {
-    window.location.href = "./index.html"
+    window.location.href = "./dashboard.html"
 }
 
 submitBtn.addEventListener("click", (e) => {
@@ -23,7 +23,7 @@ submitBtn.addEventListener("click", (e) => {
 
     if (emailVerified && passwordVerified) {
         localStorage.setItem("IsLoggedIn", "true")
-        window.location.href = "./index.html"
+        window.location.href = "./dashboard.html"
     }
 
     else if (!passwordVerified && emailVerified) {

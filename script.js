@@ -1,17 +1,17 @@
-window.addEventListener("load", () => {
-    let IsLoggedIn = localStorage.getItem("IsLoggedIn")
 
-    if (IsLoggedIn !== "true") {
-        window.location.href = "./form.html"
-    }
-})
+let IsLoggedIn = localStorage.getItem("IsLoggedIn")
+
+if (IsLoggedIn !== "true") {
+    window.location.href = "./index.html"
+}
+
 
 
 const logoutForm = document.querySelector("#logoutform")
 
 logoutForm.addEventListener("click", (e) => {
     localStorage.removeItem("IsLoggedIn")
-    window.location.href = "./form.html"
+    window.location.href = "./index.html"
 })
 
 // see All

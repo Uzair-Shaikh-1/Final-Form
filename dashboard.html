@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <title>Fb-Clone</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            --primary-color: #f0f2f5;
+            --accent-color: #65686c;
+            font-family: sans-serif;
+        }
+
+        .icon-button {
+            background: var(--primary-color);
+            border-radius: 100%;
+            border: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+
+
+        .badge {
+            width: 15px;
+            height: 15px;
+            background-color: red;
+            color: white;
+            border-radius: 100%;
+            padding: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            position: absolute;
+            right: -5px;
+            top: -5px;
+        }
+
+        .icon-text-button {
+            background-color: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            color: var(--accent-color);
+            font-weight: 500;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .story-card {
+            border-radius: 10px;
+            box-shadow: 0.1px 0.1px 1px gray;
+            min-width: 120px;
+            position: relative;
+            background-color: green;
+            background-image: url(story-01.jpg);
+            background-size: cover;
+        }
+
+        .tablet-icon-button {
+            font-size: 20px;
+            background-color: transparent;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 3px solid transparent;
+            width: 100px;
+            padding-bottom: 18px;
+            padding-top: 10px;
+        }
+
+        .tablet_only {
+            display: none !important;
+        }
+
+        .desktop_only {
+            display: none !important;
+        }
+
+        button {
+            cursor: pointer;
+            transition: .5s ease-in-out;
+        }
+
+        button:hover {
+            transform: translateY(5px);
+        }
+
+        @media screen and (max-width: 750px) {
+            main {
+                display: flex;
+
+                flex-direction: column;
+                /* Stack vertically instead of side-by-side */
+            }
+        }
+
+        @media screen and (min-width:750px) {
+            .tablet_only {
+                display: flex !important;
+            }
+        }
+
+        @media screen and (min-width:1200px) {
+            .desktop_only {
+                display: flex !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div style="min-height: 100vh;">
+
+        <nav style="
+             padding:0 10px;
+              min-height:
+               30px;
+                display:
+                flex;
+                 justify-content: 
+                space-between;
+                align-items: center;
+                cursor: pointer;">
+
+            <!-- left action  -->
+            <div style="display: flex; gap: 8px; padding: 8px;">
+
+                <!-- fb logo -->
+                <button style="
+                background-color:
+                 transparent; 
+                 border: none;">
+                    <i class="fa-brands fa-facebook" style="color: #0866ff; font-size: 40px;"></i>
+                </button>
+
+                <!-- search button -->
+                <button class="icon-button">
+                    <i class="fa-solid fa-magnifying-glass" style="font-size: 20px; color: gray;"></i>
+                </button>
+            </div>
+
+
+            <!-- middle acvtion  -->
+            <div style="display: flex; 
+           " class="tablet_only">
+
+                <button class="tablet-icon-button" style="
+                border-bottom: 3px solid #0866ff;
+                ">
+                    <i class="fa-solid fa-house" style="color: #0866ff;"></i>
+                </button>
+                <button class="tablet-icon-button">
+                    <i class="fa-brands fa-youtube" style="color: var(--accent-color);"></i>
+                </button>
+                <button class="tablet-icon-button">
+                    <i class="fa-solid fa-store" style="color: var(--accent-color);"></i>
+                </button>
+                <button class="tablet-icon-button">
+                    <i class="fa-solid fa-circle-user" style="color: var(--accent-color);"></i>
+                </button>
+                <button class="tablet-icon-button">
+                    <i class="fa-solid fa-gamepad" style="color: var(--accent-color);"></i>
+                </button>
+            </div>
+
+
+
+
+
+            <!-- right action  -->
+            <div style="display: flex; gap: 8px;">
+
+                <!-- figma button -->
+                <button class="icon-button">
+                    <i class="fa-brands fa-figma" style="font-size: 20px; color: black;"></i>
+                </button>
+                <!-- comment button -->
+                <button style="position: relative;" class="icon-button">
+                    <i class="fa-solid fa-comment" style="font-size: 20px; color: black;"></i>
+                    <!--badge  -->
+                    <div class="badge">
+
+
+                        1
+                    </div>
+                </button>
+
+                <!-- bell button -->
+
+
+                <button style="position: relative;" class="icon-button">
+                    <i class="fa-solid fa-bell" style="font-size: 20px; color: black;"></i>
+                    <!--badge  -->
+                    <div class="badge">
+                        9
+                    </div>
+                </button>
+
+                <!-- profile button -->
+
+                <button id="logoutform" style="position: relative;" class="icon-button">
+                    <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+                    <!--badge  -->
+                    <div style=" width: 8px; height: 8px; border: 2px solid white; background-color: var(--primary-color);
+            border-radius: 100%;
+            padding: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            position: absolute;
+            right: 0px;
+            bottom: -5px;">
+                        <i style=" font-size:10px; color: black;" class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </button>
+            </div>
+        </nav>
+
+        <!-- feed contet -->
+        <main style=" display: flex; min-height: 100px;">
+
+
+
+
+            <!-- shortcuts -->
+            <div class="desktop_only" style="flex: 1; background-color: var(--primary-color);
+            padding-top: 10px; padding: 20px; display: flex; flex-direction: column; gap: 20px;">
+
+                <!-- actions -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <!-- link -->
+                    <div style="display: flex; align-items: center; gap: 15px;">
+
+                        <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+                        M.Uzair
+                    </div>
+                    <!-- link -->
+                    <div style="display: flex; align-items: center; gap: 15px;">
+
+                        <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+                        Meta Ai
+                    </div>
+                    <!-- link -->
+                    <div style="display: flex; align-items: center; gap: 15px;">
+
+                        <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+                        Freinds
+                    </div>
+                    <!-- link -->
+                    <div style="display: flex; align-items: center; gap: 15px;">
+
+                        <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+                        Professional Dashboard
+                    </div>
+                    <!-- link -->
+                    <div style="display: flex; align-items: center; gap: 15px;">
+
+                        <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+                        Group
+                    </div>
+                    <!-- link -->
+                    <div style="display: flex; align-items: center; gap: 15px;">
+
+                        <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+                        Feed
+                    </div>
+                    <!-- link -->
+                    <div style="display: flex; align-items: center; gap: 15px;">
+
+                        <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+                        Marketplace
+                    </div>
+                    <!-- link -->
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <button style="background-color:#e2e5e9;
+                        border: none; border-radius: 100%;
+                        width: 40px;
+                        height: 40px;
+                        ">
+
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        See More
+                    </div>
+                </div>
+
+                <!-- jugaro divider -->
+                <div style="
+                    height: 2px;
+                    background-color:#e2e5e9;
+                    margin: 10px 0;">
+                </div>
+                <!-- shoertcuts  -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <!-- link -->
+                    <div style="display: flex; align-items: center; gap: 15px;">
+
+                        <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+                        Developer Uzair
+                    </div>
+                    <!-- link -->
+                    <div style="display: flex; align-items: center; gap: 15px;">
+
+                        <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+                        Earn 1000% dollar a month from web developement with Junaid Qureshi
+                    </div>
+                    <!-- link -->
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <button style="background-color:#e2e5e9;
+                        border: none; border-radius: 100%;
+                        width: 40px;
+                        height: 40px;
+                        ">
+
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        See More
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- search stories, and feed -->
+            <div style="flex: 2
+            ; overflow: hidden; background-color: var(--primary-color);">
+                <!-- search bar and action -->
+
+                <div style="padding: 10px; background: var(--primary-color);">
+                    <div style="min-height: 40px; 
+                    background-color: white;
+                     border-radius: 10px;
+                      box-shadow: 0.1px 0.1px 1px gray;
+                      padding: 15px 20px;">
+
+
+
+                        <!-- search Box -->
+
+                        <div style="display: flex; gap: 10PX;
+                    align-items: center;">
+                            <!-- avatar -->
+                            <button style="position: relative;" class="icon-button">
+                                <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+                                <!--badge  -->
+                            </button>
+
+                            <!-- Text Field -->
+                            <input type="text" placeholder="what`s on Your Mind Uzair?" style="width: 100%; 
+                            background: var(--primary-color); 
+                            border: none; 
+                            padding: 10px 10px;
+                             border-radius: 20px; 
+                             font-size: 16px;
+                             outline: none;
+                             color: var(--accent-color);">
+
+                        </div>
+
+                        <!-- divider -->
+                        <div style="
+                    height: 2px;
+                    background-color: var(--primary-color);
+                    margin: 10px 0;">
+                        </div>
+
+
+                        <!-- action  -->
+                        <div style="display: flex; justify-content: space-around">
+
+
+                            <button class="icon-text-button">
+                                <i style="color: #f02849; font-size: 20px;" class="fa-solid fa-video"></i>Live
+                                video</button>
+
+
+                            <button class="icon-text-button"> <i style="color: #45bd62; font-size: 20px;"
+                                    class="fa-solid fa-images"></i>Photo/Video</button>
+                            <button class="icon-text-button"> <i style="color: #fc5677; font-size: 20px;"
+                                    class="fa-brands fa-youtube"></i>Reel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- stories  -->
+
+                <div id="story-craousal" style="min-height: 200px ; display: flex;
+            background-color: var(--primary-color);
+            padding-bottom: 15px;
+            padding-left: 20px;
+            gap: 10px;
+            position: relative;
+            overflow: hidden !important;     
+            width: 95%;">
+
+
+                    <!-- navigator  -->
+                    <button id="craousal" style="position: absolute;
+                 top: 80px;
+                  right: 30px;
+                   border-radius: 100%;
+            border: none;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 9;
+            border: 1px solid rgba(0,0,0,0.464);">
+                        <i class="fa-solid fa-chevron-right" style="font-size: 20px; color: black;"></i>
+
+                    </button>
+
+                    <!-- card -->
+                    <div id="story-card" class="story-card" style="background-image: url(story-01.jpg);">
+
+                        <!-- avatar -->
+                        <button style="position: absolute; top: 10px; left: 12px;" class="icon-button">
+                            <img src="profile.jpg" alt=""
+                                style="  border: 1px solid blue; width: 40px; border-radius: 100%;">
+                            <!--badge  -->
+                        </button>
+                        <!-- profile name  -->
+                        <div style="position: absolute; font-size: 15px; color: white; bottom: 10px; left: 10px;">Tariq
+                            Jamail</div>
+
+                    </div>
+                    <div class="story-card" style="background-image: url(story-01.jpg);">
+
+                        <!-- avatar -->
+                        <button style="position: absolute; top: 10px; left: 12px;" class="icon-button">
+                            <img src="profile.jpg" alt=""
+                                style="  border: 1px solid blue; width: 40px; border-radius: 100%;">
+                            <!--badge  -->
+                        </button>
+                        <!-- profile name  -->
+                        <div style="position: absolute; font-size: 15px; color: white; bottom: 10px; left: 10px;">Tariq
+                            Jamail</div>
+
+                    </div>
+                    <div class="story-card" style="background-image: url(story-01.jpg);">
+
+                        <!-- avatar -->
+                        <button style="position: absolute; top: 10px; left: 12px;" class="icon-button">
+                            <img src="profile.jpg" alt=""
+                                style="  border: 1px solid blue; width: 40px; border-radius: 100%;">
+                            <!--badge  -->
+                        </button>
+                        <!-- profile name  -->
+                        <div style="position: absolute; font-size: 15px; color: white; bottom: 10px; left: 10px;">Tariq
+                            Jamail</div>
+
+                    </div>
+                    <div class="story-card" style="background-image: url(story-01.jpg);">
+
+                        <!-- avatar -->
+                        <button style="position: absolute; top: 10px; left: 12px;" class="icon-button">
+                            <img src="profile.jpg" alt=""
+                                style="  border: 1px solid blue; width: 40px; border-radius: 100%;">
+                            <!--badge  -->
+                        </button>
+                        <!-- profile name  -->
+                        <div style="position: absolute; font-size: 15px; color: white; bottom: 10px; left: 10px;">Tariq
+                            Jamail</div>
+
+                    </div>
+
+                    <!-- card -->
+                    <div class="story-card" style="background-image: url(story-02.jpg);">
+
+                        <!-- avatar -->
+                        <button style="position: absolute; top: 10px; left: 12px;" class="icon-button">
+                            <img src="profile.jpg" alt=""
+                                style="  border: 1px solid blue; width: 40px; border-radius: 100%;">
+                            <!--badge  -->
+                        </button>
+                        <!-- profile name  -->
+                        <div style="position: absolute; font-size: 15px; color: white; bottom: 10px; left: 10px;">
+                            Ameen Alam</div>
+
+                    </div><!-- card -->
+                    <div class="story-card" style="background-image: url(story-03.jpg);">
+
+                        <!-- avatar -->
+                        <button style="position: absolute; top: 10px; left: 12px;" class="icon-button">
+                            <img src="profile.jpg" alt=""
+                                style="  border: 1px solid blue; width: 40px; border-radius: 100%;">
+                            <!--badge  -->
+                        </button>
+                        <!-- profile name  -->
+                        <div style="position: absolute; font-size: 15px; color: white; bottom: 10px; left: 10px;">
+                            A R Martial Arts Academy</div>
+
+                    </div><!-- card -->
+                    <div class="story-card" style="background-image: url(story-04.jpg);">
+
+                        <!-- avatar -->
+                        <button style="position: absolute; top: 10px; left: 12px;" class="icon-button">
+                            <img src="profile.jpg" alt=""
+                                style="  border: 1px solid blue; width: 40px; border-radius: 100%;">
+                            <!--badge  -->
+                        </button>
+                        <!-- profile name  -->
+                        <div style="position: absolute; font-size: 15px; color: white; bottom: 10px; left: 10px;">
+                            Pak Wheels</div>
+
+                    </div><!-- card -->
+                    <div class="story-card" style="background-image: url(story-05.jpg);">
+
+                        <!-- avatar -->
+                        <button style="position: absolute; top: 10px; left: 12px;" class="icon-button">
+                            <img src="profile.jpg" alt=""
+                                style="  border: 1px solid blue; width: 40px; border-radius: 100%;">
+                            <!--badge  -->
+                        </button>
+                        <!-- profile name  -->
+                        <div style="position: absolute; font-size: 15px; color: white; bottom: 10px; left: 10px;">
+                            J.Scents
+                        </div>
+
+                    </div>
+                    <div class="story-card" style="background-image: url(story-04.jpg);">
+
+                        <!-- avatar -->
+                        <button style="position: absolute; top: 10px; left: 12px;" class="icon-button">
+                            <img src="profile.jpg" alt=""
+                                style="  border: 1px solid blue; width: 40px; border-radius: 100%;">
+                            <!--badge  -->
+                        </button>
+                        <!-- profile name  -->
+                        <div style="position: absolute; font-size: 15px; color: white; bottom: 10px; left: 10px;">
+                            Pak Wheels</div>
+
+                    </div><!-- card -->
+                    <div class="story-card" style="background-image: url(story-05.jpg);">
+
+                        <!-- avatar -->
+                        <button style="position: absolute; top: 10px; left: 12px;" class="icon-button">
+                            <img src="profile.jpg" alt=""
+                                style="  border: 1px solid blue; width: 40px; border-radius: 100%;">
+                            <!--badge  -->
+                        </button>
+                        <!-- profile name  -->
+                        <div style="position: absolute; font-size: 15px; color: white; bottom: 10px; left: 10px;">
+                            J.Scents
+                        </div>
+
+                    </div>
+                    <div class="story-card" style="background-image: url(story-04.jpg);">
+
+                        <!-- avatar -->
+                        <button style="position: absolute; top: 10px; left: 12px;" class="icon-button">
+                            <img src="profile.jpg" alt=""
+                                style="  border: 1px solid blue; width: 40px; border-radius: 100%;">
+                            <!--badge  -->
+                        </button>
+                        <!-- profile name  -->
+                        <div style="position: absolute; font-size: 15px; color: white; bottom: 10px; left: 10px;">
+                            Pak Wheels</div>
+
+                    </div><!-- card -->
+                    <div class="story-card" style="background-image: url(story-05.jpg);">
+
+                        <!-- avatar -->
+                        <button style="position: absolute; top: 10px; left: 12px;" class="icon-button">
+                            <img src="profile.jpg" alt=""
+                                style="  border: 1px solid blue; width: 40px; border-radius: 100%;">
+                            <!--badge  -->
+                        </button>
+                        <!-- profile name  -->
+                        <div style="position: absolute; font-size: 15px; color: white; bottom: 10px; left: 10px;">
+                            J.Scents
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Feed list -->
+
+                <div
+                    style=" padding-bottom: 20px; gap: 10px;  display: flex; flex-direction: column; min-height: 350px; border-radius: 10px; padding: 0 20px; background-color: var(--primary-color);">
+
+                    <!-- feed items -->
+                    <div style="padding: 10px 20px; min-height: 780px; border-radius: 10px; background-color: white;">
+                        <!-- header -->
+                        <div style=" display: flex; justify-content: space-between; min-height: 40px;">
+                            <!-- profile -->
+                            <div style="display: flex; gap: 10px;">
+                                <div>
+                                    <!-- avatar -->
+                                    <button style="position: relative;" class="icon-button">
+                                        <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+
+                                    </button>
+
+                                </div>
+                                <!-- text content -->
+                                <div>
+                                    <div style="font-size: 15px;">Ahmed Raza</div>
+                                    <div style=" margin-top: 5px; font: 13.5px; color: var(--accent-color);">4h . <i
+                                            class="fa-solid fa-earth-asia"></i> </div>
+                                </div>
+                            </div>
+
+                            <!-- actions -->
+                            <div style="display: flex; gap: 20px;">
+                                <button style="background: transparent; border: none;
+                            color: var(--accent-color);">
+                                    <i class="fa-solid fa-ellipsis" style="font-size: 21px;"></i></button>
+
+
+                                <button style="background: transparent; border:none;
+                            color:var(--accent-color);">
+                                    <i class="fa-solid fa-xmark" style="font-size: 21px;"></i></button>
+
+
+                            </div>
+                        </div>
+
+                        <!-- content -->
+                        <div style=" min-height: 300px;">
+                            <!-- Text container -->
+                            <div style="padding: 10px 0;">😁</div>
+
+                            <!-- image container -->
+                            <div style=" min-height: 250px; width: 100%;">
+                                <img src="story-02.jpg" alt="" style="width: 100%;
+                            border-radius: 10px;">
+                            </div>
+                        </div>
+
+                        <!-- footer  -->
+                        <div style=" min-height: 40px;">
+                            <!-- reaction -->
+                            <div style="color: var(--accent-color);">😂 1</div>
+
+                            <!-- jugaro divider -->
+                            <div style="
+                    height: 2px;
+                    background-color: var(--primary-color);
+                    margin: 10px 0;">
+                            </div>
+
+                            <!-- action -->
+
+                            <div style="display: flex; justify-content: space-around;">
+
+                                <button class="icon-text-button" style=" padding: 0 10px">
+                                    <i style="color: var(--accent-color);
+                                 font-size: 20px;" class="fa-regular fa-thumbs-up"></i>Like</button>
+
+                                <button class="icon-text-button">
+                                    <i style="color: var(--accent-color);
+                                 font-size: 20px;" class="fa-regular fa-comment"></i>Comment</button>
+
+                                <button class="icon-text-button">
+                                    <i style="color: var(--accent-color);
+                                 font-size: 20px;" class="fa-solid fa-share"></i>Comment</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- feed items -->
+                    <div style="padding: 10px 20px; height: 780px; border-radius: 10px; background-color: white;">
+                        <!-- header -->
+                        <div style=" display: flex; justify-content: space-between; min-height: 40px;">
+                            <!-- profile -->
+                            <div style="display: flex; gap: 10px;">
+                                <div>
+                                    <!-- avatar -->
+                                    <button style="position: relative;" class="icon-button">
+                                        <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+
+                                    </button>
+
+                                </div>
+                                <!-- text content -->
+                                <div>
+                                    <div style="font-size: 15px;">Ahmed Raza</div>
+                                    <div style=" margin-top: 5px; font: 13.5px; color: var(--accent-color);">4h . <i
+                                            class="fa-solid fa-earth-asia"></i> </div>
+                                </div>
+                            </div>
+
+                            <!-- actions -->
+                            <div style="display: flex; gap: 20px;">
+                                <button style="background: transparent; border: none;
+                            color: var(--accent-color);">
+                                    <i class="fa-solid fa-ellipsis" style="font-size: 21px;"></i></button>
+
+
+                                <button style="background: transparent; border:none;
+                            color:var(--accent-color);">
+                                    <i class="fa-solid fa-xmark" style="font-size: 21px;"></i></button>
+
+
+                            </div>
+                        </div>
+
+                        <!-- content -->
+                        <div style=" min-height: 300px;">
+                            <!-- Text container -->
+                            <div style="padding: 10px 0;">😁</div>
+
+                            <!-- image container -->
+                            <div style=" min-height: 250px; width: 100%;">
+                                <img src="story-04.jpg" alt="" style="width: 100%;
+                            border-radius: 10px;">
+                            </div>
+                        </div>
+
+                        <!-- footer  -->
+                        <div style=" min-height: 40px;">
+                            <!-- reaction -->
+                            <div style="color: var(--accent-color);">😂 1</div>
+
+                            <!-- jugaro divider -->
+                            <div style="
+                    height: 2px;
+                    background-color: var(--primary-color);
+                    margin: 10px 0;">
+                            </div>
+
+                            <!-- action -->
+
+                            <div style="display: flex; justify-content: space-around;">
+
+                                <button class="icon-text-button" style=" padding: 0 10px">
+                                    <i style="color: var(--accent-color);
+                                 font-size: 20px;" class="fa-regular fa-thumbs-up"></i>Like</button>
+
+                                <button class="icon-text-button">
+                                    <i style="color: var(--accent-color);
+                                 font-size: 20px;" class="fa-regular fa-comment"></i>Comment</button>
+
+                                <button class="icon-text-button">
+                                    <i style="color: var(--accent-color);
+                                 font-size: 20px;" class="fa-solid fa-share"></i>Comment</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- feed items -->
+                    <div style="padding: 10px 20px; height: 780px; border-radius: 10px; background-color: white;">
+                        <!-- header -->
+                        <div style=" display: flex; justify-content: space-between; min-height: 40px;">
+                            <!-- profile -->
+                            <div style="display: flex; gap: 10px;">
+                                <div>
+                                    <!-- avatar -->
+                                    <button style="position: relative;" class="icon-button">
+                                        <img src="profile.jpg" alt="" style="width: 40px; border-radius: 100%;">
+
+                                    </button>
+
+                                </div>
+                                <!-- text content -->
+                                <div>
+                                    <div style="font-size: 15px;">Ahmed Raza</div>
+                                    <div style=" margin-top: 5px; font: 13.5px; color: var(--accent-color);">4h . <i
+                                            class="fa-solid fa-earth-asia"></i> </div>
+                                </div>
+                            </div>
+
+                            <!-- actions -->
+                            <div style="display: flex; gap: 20px;">
+                                <button style="background: transparent; border: none;
+                            color: var(--accent-color);">
+                                    <i class="fa-solid fa-ellipsis" style="font-size: 21px;"></i></button>
+
+
+                                <button style="background: transparent; border:none;
+                            color:var(--accent-color);">
+                                    <i class="fa-solid fa-xmark" style="font-size: 21px;"></i></button>
+
+
+                            </div>
+                        </div>
+
+                        <!-- content -->
+                        <div style=" min-height: 300px;">
+                            <!-- Text container -->
+                            <div style="padding: 10px 0;">😁</div>
+
+                            <!-- image container -->
+                            <div style=" min-height: 250px; width: 100%;">
+                                <img src="story-03.jpg" alt="" style="width: 100%;
+                            border-radius: 10px;">
+                            </div>
+                        </div>
+
+                        <!-- footer  -->
+                        <div style=" min-height: 40px;">
+                            <!-- reaction -->
+                            <div style="color: var(--accent-color);">😂 1</div>
+
+                            <!-- jugaro divider -->
+                            <div style="
+                    height: 2px;
+                    background-color: var(--primary-color);
+                    margin: 10px 0;">
+                            </div>
+
+                            <!-- action -->
+
+                            <div style="display: flex; justify-content: space-around;">
+
+                                <button class="icon-text-button" style=" padding: 0 10px">
+                                    <i style="color: var(--accent-color);
+                                 font-size: 20px;" class="fa-regular fa-thumbs-up"></i>Like</button>
+
+                                <button class="icon-text-button">
+                                    <i style="color: var(--accent-color);
+                                 font-size: 20px;" class="fa-regular fa-comment"></i>Comment</button>
+
+                                <button class="icon-text-button">
+                                    <i style="color: var(--accent-color);
+                                 font-size: 20px;" class="fa-solid fa-share"></i>Comment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <!-- freind request birthday and contact -->
+            <div style="flex: 1;">
+                <div class="tablet_only" style="
+            display: flex;
+            flex-direction: column;
+            background-color: var(--primary-color);
+            flex: 1;
+          ">
+                    <!-- Friend Requests -->
+                    <div style="padding: 10px">
+                        <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                            Friend Requests <span style="color: #0867ffd5">See all</span>
+                        </div>
+
+                        <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                            <div>
+                                <button style="position: relative" class="icon-button">
+                                    <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                </button>
+                            </div>
+                            <div style="width: 100%">
+                                <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                    Jawad Boosting
+                                    <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                </div>
+                                <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                    <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                    <span style="color: var(--accent-color)">2 mutual friends</span>
+                                </div>
+                                <div style="margin-top: 10px; display: flex; gap: 10px">
+                                    <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                        Confirm
+                                    </button>
+                                    <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Divider -->
+
+
+
+                    <div style="height: 2px; background-color: #e2e5e9; margin: 10px 0"></div>
+
+
+                    <!-- birthdays -->
+                    <div style="padding: 10px">
+                        <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                            Birthdays
+                        </div>
+
+                        <div style="width: 100%; display: flex; padding-top: 15px; gap: 10px">
+                            <div>
+                                <button style="position: relative" class="icon-button">
+                                    <i class="fa-solid fa-gift" style="font-size: 30px; color: #26b3f8;"></i>
+                                </button>
+                            </div>
+                            <div style="width: 100%; line-height: 25px; font-size: 16px;">
+                                <strong>Syed Talha Jilani</strong> <strong>and 5 others</strong> <strong>have birthdays
+                                    today</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Divider -->
+                    <div style="height: 2px; background-color: #e2e5e9; margin: 10px 0"></div>
+                    <!-- contact -->
+                    <div style="padding: 10px">
+                        <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              ">
+                            Contact <div style="display: flex; gap: 10px;">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+
+                        <button id="see-btn" style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 100%;
+                      margin-top: 15px;
+                      display: flex;
+                      gap: 10px;
+                      justify-content: center;
+                      cursor: pointer;
+                    ">
+                            See All 17 <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="see-all" style="display: none;">
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px">
+                                <div style="
+                font-size: 18px;
+                font-weight: 500;
+                color: var(--accent-color);
+                display: flex;
+                justify-content: space-between;
+              ">
+                                    Friend Requests <span style="color: #0867ffd5">See all</span>
+                                </div>
+
+                                <div style="width: 100%; display: flex; padding-top: 15px; gap: 25px">
+                                    <div>
+                                        <button style="position: relative" class="icon-button">
+                                            <img src="./profile.jpg" alt="" style="width: 55px; border-radius: 100%" />
+                                        </button>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="
+                    display: flex;
+                    font-weight: 500;
+                    justify-content: space-between;
+                    font-size: 14px;
+                  ">
+                                            Jawad Boosting
+                                            <span style="font-size: 13px; color: var(--accent-color)">3d</span>
+                                        </div>
+                                        <div style="
+                    font-size: 13px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                  ">
+                                            <img src="./profile.jpg" alt="" style="width: 20px; border-radius: 100%" />
+
+                                            <span style="color: var(--accent-color)">2 mutual friends</span>
+                                        </div>
+                                        <div style="margin-top: 10px; display: flex; gap: 10px">
+                                            <button style="
+                      background-color: #0866ff;
+                      color: white;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Confirm
+                                            </button>
+                                            <button style="
+                      background-color: #e2e5e9;
+                      color: black;
+                      padding: 10px;
+                      border-radius: 10px;
+                      border: none;
+                      width: 75px;
+                    ">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- floating action button  -->
+                <div style="
+               position: fixed;
+               bottom: 20px;
+               right: 20px;
+               background-color: white;
+               border-radius: 100%;
+               padding: 10px;
+               cursor: pointer;
+               color: black;
+               box-shadow: 2px 2px 6px gray;
+               font-size: 15px;">
+
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+        </main>
+    </div>
+
+
+
+    <script src="script.js">
+        window.location.href = "./form.html"
+    </script>
+</body>
+
+</html>

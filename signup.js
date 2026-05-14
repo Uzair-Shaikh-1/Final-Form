@@ -10,7 +10,7 @@ const h5 = document.querySelector("h5")
 let IsLoggedIn = localStorage.getItem("IsLoggedIn")
 
 if (IsLoggedIn === "true") {
-    window.location.href = "./index.html"
+    window.location.href = "./dashboard.html"
 }
 
 submitBtn.addEventListener("click", (e) => {
