@@ -9,7 +9,7 @@ const h5 = document.querySelector("h5")
 
 let IsLoggedIn = localStorage.getItem("IsLoggedIn")
 
-if (IsLoggedIn) {
+if (IsLoggedIn === "true") {
     window.location.href = "./index.html"
 }
 
@@ -22,7 +22,7 @@ submitBtn.addEventListener("click", (e) => {
     if (emailVerified && passwordVerified && numberVerified) {
 
         console.log("user logged In")
-        localStorage.setItem("IsLoggedIn", true)
+        localStorage.setItem("IsLoggedIn", "true")
         window.location.href = "./index.html"
         localStorage.setItem("email", emailInput.value)
         localStorage.setItem("password", passwordInput.value)

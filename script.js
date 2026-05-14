@@ -1,7 +1,7 @@
 let IsLoggedIn = localStorage.getItem("IsLoggedIn")
 
 
-if (!IsLoggedIn) {
+if (IsLoggedIn !== "true") {
     window.location.href = "./form.html"
 }
 
