@@ -1,5 +1,5 @@
 
-let IsLoggedIn = localStorage.getItem("IsLoggedIn")
+let IsLoggedIn = sessionStorage.getItem("IsLoggedIn")
 
 if (IsLoggedIn !== "true") {
     window.location.href = "./index.html"
@@ -10,7 +10,7 @@ if (IsLoggedIn !== "true") {
 const logoutForm = document.querySelector("#logoutform")
 
 logoutForm.addEventListener("click", (e) => {
-    localStorage.removeItem("IsLoggedIn")
+    sessionStorage.removeItem("IsLoggedIn")
     window.location.href = "./index.html"
 })
 
