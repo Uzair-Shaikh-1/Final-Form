@@ -15,31 +15,36 @@ if (IsLoggedIn) {
 
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault()
-    const emailVerified = emailInput.value
-    const passwordVerified = passwordInput.value
-    const numberVerified = numberInput.value
+    const email = emailInput.value
+    const password = passwordInput.value
+    const number = numberInput.value
 
-    if (emailVerified && passwordVerified && numberVerified) {
+    if (email && password && number) {
 
-        console.log("user logged In")
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let user = {
+            email,
+            password,
+            number
+        }
+        users.push(user)
+
         sessionStorage.setItem("IsLoggedIn", "true")
         window.location.href = "./index.html"
-        localStorage.setItem("email", emailInput.value)
-        localStorage.setItem("password", passwordInput.value)
-        localStorage.setItem("number", numberInput.value)
+        localStorage.setItem("users", JSON.stringify(users))
         h5.style.display = "none"
     }
 
-    else if (!passwordVerified && emailVerified && numberVerified) {
+    else if (!password && email && number) {
         h5.style.display = "block"
         h5.textContent = "password is Incorrect"
 
     }
-    else if (!emailVerified && passwordVerified && numberVerified) {
+    else if (!email && password && number) {
         h5.style.display = "block"
         h5.textContent = "Email is Incorrect"
     }
-    else if (!numberVerified && emailVerified && passwordVerified) {
+    else if (!number && email && password) {
         h5.style.display = "block"
         h5.textContent = "number is Incorrect"
     }
